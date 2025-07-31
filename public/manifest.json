@@ -2,7 +2,7 @@
   "name": "贪吃蛇游戏",
   "short_name": "贪吃蛇",
   "description": "响应式贪吃蛇游戏",
-  "start_url": "/",
+  "start_url": "https://snake.232799.xyz",
   "display": "standalone",
   "background_color": "#f5f5f5",
   "theme_color": "#4caf50",
