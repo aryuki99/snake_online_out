@@ -5,9 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--background-primary);
+  font-family: var(--typography-fontFamily-sans);
 }
 
 .main {
@@ -18,15 +17,17 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--layout-container-maxWidth);
+  padding: var(--layout-container-padding);
 }
 
 .title {
   margin: 0 0 1rem;
   line-height: 1.15;
-  font-size: 2.5rem;
+  font-size: var(--typography-fontSizes-h1);
+  font-weight: var(--typography-fontWeights-bold);
   text-align: center;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .gameInfo {
@@ -39,12 +40,18 @@
 }
 
 .score {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
+  font-size: var(--typography-fontSizes-h3);
+  font-weight: var(--typography-fontWeights-bold);
+  color: var(--text-primary);
 }
 
-.settingsButton {
+.gameStats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.settingsButton, .leaderboardButton {
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -52,20 +59,23 @@
   padding: 0.5rem;
   border-radius: 50%;
   transition: background-color 0.3s;
+  color: var(--icon-primary);
 }
 
-.settingsButton:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.settingsButton:hover, .leaderboardButton:hover {
+  background-color: var(--accent-primary-subtle);
+  color: var(--accent-primary);
 }
 
 .settingsPanel {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1rem;
+  background-color: var(--background-secondary);
+  border-radius: var(--geometry-borderRadius-large);
+  padding: var(--components-card-padding);
   margin-bottom: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--components-card-boxShadow);
   width: 100%;
   max-width: 600px;
+  border: var(--components-card-border);
 }
 
 .settingItem {
@@ -79,24 +89,27 @@
 .settingItem label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: var(--typography-fontWeights-medium);
+  color: var(--text-secondary);
 }
 
 .settingItem input {
   width: 100%;
   padding: 0.5rem 0;
+  accent-color: var(--accent-primary);
 }
 
 .gameArea {
   position: relative;
   width: 600px;
   height: 600px;
-  background-color: #e0e0e0;
-  border-radius: 8px;
+  background-color: var(--background-secondary);
+  border-radius: var(--geometry-borderRadius-large);
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--components-card-boxShadow);
   margin-bottom: 1.5rem;
   touch-action: none; /* 防止移动设备上的滚动 */
+  border: var(--components-card-border);
 }
 
 .cell {
@@ -108,15 +121,16 @@
 }
 
 .snake {
-  background-color: #4caf50;
+  background-color: var(--accent-primary);
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .snakeHead {
-  background-color: #2e7d32;
+  background-color: var(--accent-primary);
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 2px var(--accent-primary-subtle);
 }
 
 .food {
@@ -140,35 +154,38 @@
 
 .gameOverMessage,
 .pauseMessage {
-  background-color: white;
+  background-color: var(--background-secondary);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: var(--geometry-borderRadius-large);
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--components-card-boxShadow);
 }
 
 .gameOverMessage div {
   margin: 1rem 0;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: var(--typography-fontSizes-h3);
+  font-weight: var(--typography-fontWeights-bold);
+  color: var(--text-primary);
 }
 
 .gameOverMessage button,
 .pauseMessage button {
-  background-color: #4caf50;
+  background-color: var(--accent-primary);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 4px;
+  font-size: var(--typography-fontSizes-body);
+  border-radius: var(--geometry-borderRadius-medium);
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: 1rem;
+  font-weight: var(--typography-fontWeights-medium);
 }
 
 .gameOverMessage button:hover,
 .pauseMessage button:hover {
-  background-color: #388e3c;
+  background-color: var(--accent-primary-subtle);
+  color: var(--text-primary);
 }
 
 .controls {
@@ -191,45 +208,54 @@
   height: 60px;
   margin: 0 0.25rem;
   font-size: 1.5rem;
-  background-color: #2196f3;
-  color: white;
-  border: none;
-  border-radius: 8px;
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  border: var(--components-card-border);
+  border-radius: var(--geometry-borderRadius-medium);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
   user-select: none;
   touch-action: manipulation;
 }
 
 .controlButton:hover {
-  background-color: #1976d2;
+  background-color: var(--accent-primary-subtle);
+  color: var(--accent-primary);
 }
 
 .controlButton:active {
-  background-color: #0d47a1;
+  background-color: var(--accent-primary);
+  color: white;
 }
 
 .footer {
   width: 100%;
   height: 60px;
-  border-top: 1px solid #eaeaea;
+  border-top: var(--components-card-border);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fafafa;
+  background-color: var(--background-secondary);
 }
 
 .footer p {
-  color: #666;
+  color: var(--text-tertiary);
+  font-size: var(--typography-fontSizes-small);
+}
+
+.gameTime {
+  font-size: var(--typography-fontSizes-body);
+  color: var(--text-secondary);
+  margin-right: 1rem;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
   .title {
-    font-size: 1.8rem;
+    font-size: var(--typography-fontSizes-h2);
     margin-bottom: 0.5rem;
   }
   
@@ -269,7 +295,7 @@
 
 @media (max-width: 480px) {
   .title {
-    font-size: 1.5rem;
+    font-size: var(--typography-fontSizes-h3);
   }
   
   .controlButton {

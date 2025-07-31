@@ -1,0 +1,143 @@
+{
+  "siteProfile": {
+    "name": "Idoubi's Portfolio",
+    "version": "1.0",
+    "description": "A comprehensive JSON representation of the personal portfolio website, including UI design parameters, page content, and element functionality."
+  },
+  "designSystem": {
+    "palette": {
+      "background": {
+        "primary": "#F9FAFB",
+        "secondary": "#FFFFFF"
+      },
+      "text": {
+        "primary": "#111827",
+        "secondary": "#4B5563",
+        "tertiary": "#6B7280"
+      },
+      "accent": {
+        "primary": "#34D399",
+        "primary_subtle": "#A7F3D0"
+      },
+      "border": {
+        "primary": "#E5E7EB"
+      },
+      "icon": {
+        "primary": "#374151"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+      },
+      "fontSizes": {
+        "h1": "3rem",
+        "h2": "2.25rem",
+        "h3": "1.5rem",
+        "body": "1rem",
+        "small": "0.875rem",
+        "tiny": "0.75rem"
+      },
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "bold": 700
+      }
+    },
+    "layout": {
+      "container": {
+        "maxWidth": "1024px",
+        "padding": "0 24px"
+      },
+      "grid": {
+        "columns": 3,
+        "gap": "24px"
+      }
+    },
+    "geometry": {
+      "borderRadius": {
+        "medium": "12px",
+        "large": "16px"
+      }
+    },
+    "components": {
+      "card": {
+        "backgroundColor": "var(--palette-background-secondary)",
+        "padding": "24px",
+        "borderRadius": "var(--geometry-borderRadius-large)",
+        "border": "1px solid var(--palette-border-primary)",
+        "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)"
+      }
+    }
+  },
+  "pageContent": {
+    "header": {
+      "functionality": "Provides navigation across the website.",
+      "navLinks": [
+        { "text": "Home", "target": "/" },
+        { "text": "About", "target": "/about" },
+        { "text": "Works", "target": "/works" },
+        { "text": "Blogs", "target": "/blogs" }
+      ]
+    },
+    "aboutPage": {
+      "title": "I'm idoubi, a Full-Stack Engineer, Indie Maker.",
+      "bio": [
+        "I was a former fan of Adobe, so I chose this nickname.",
+        "I graduated from Wuhan University in 2015, majoring in nuclear engineering, self-taught and switched to IT.",
+        "I was a former senior engineer at Tencent, WeChat Group, working as backend-develop engineer.",
+        "I am now freelancer, all in AI."
+      ],
+      "contact": {
+        "email": "me@idoubi.cc",
+        "functionality": "Opens the default email client to send a message to the author."
+      },
+      "socialLinks": {
+        "functionality": "Links to the author's external social and professional profiles.",
+        "profiles": ["X", "Link", "GitHub", "Pen", "RSS"]
+      },
+      "personalImages": {
+        "functionality": "A decorative grid of personal photos to add a human touch.",
+        "count": 4
+      },
+      "activityGraph": {
+        "functionality": "Displays GitHub contribution activity over the last year, showcasing coding consistency and volume.",
+        "contributionsLastYear": 157
+      }
+    },
+    "worksPage": {
+      "title": "My Works",
+      "subtitle": "The most important thing in making products is happiness.",
+      "functionality": "Showcases a curated list of personal or professional projects. Each card links to the project's dedicated page or live version.",
+      "projects": [
+        { "name": "ThinkAny", "description": "AI Search Engine", "tags": ["# AI", "# Search Engine"] },
+        { "name": "HeyBeauty", "description": "AI Virtual Try-On", "tags": ["# AI", "# Virtual Try-On", "# Image Tools"] },
+        { "name": "PodLM", "description": "AI Podcast Generator", "tags": ["# AI", "# Podcast Generator"] },
+        { "name": "Pagen", "description": "AI Landing Page Generator", "tags": ["# AI", "# Landing Page Generator"] },
+        { "name": "Melodisco", "description": "AI Music Player", "tags": ["# AI", "# Music Player"] },
+        { "name": "AI Wallpaper", "description": "AI Wallpaper Generator", "tags": ["# AI", "# Wallpaper Generator"] },
+        { "name": "AI Cover", "description": "AI Cover Generator", "tags": ["# AI", "# Cover Generator"] },
+        { "name": "GPTs Works", "description": "GPTs directory", "tags": ["# AI", "# GPTs", "# Directory"] },
+        { "name": "MCP Servers", "description": "MCP Servers directory", "tags": ["# AI", "# MCP", "# Directory"] }
+      ]
+    },
+    "openSourcePage": {
+      "title": "Open Source",
+      "functionality": "Lists open-source projects contributed to or maintained by the author. Each card links to the corresponding GitHub repository.",
+      "repositories": [
+        { "name": "gpts-works", "description": "A third-party GPTs store", "stats": { "stars": 1500, "forks": 301 } },
+        { "name": "aicover", "description": "AI Cover Generator", "stats": { "stars": 1500, "forks": 301 } },
+        { "name": "rag-search", "description": "RAG Search API owned by ThinkAny", "stats": { "stars": 1000, "forks": 138 } },
+        { "name": "sorafm", "description": "Sora AI Video Collection", "stats": { "stars": 967, "forks": 280 } },
+        { "name": "aiwallpaper", "description": "AI Wallpaper Generator", "stats": { "stars": 586, "forks": 179 } },
+        { "name": "melodisco", "description": "AI Music Player", "stats": { "stars": 463, "forks": 92 } },
+        { "name": "pagen-ai-landing-page-template", "description": "AI Landing Page Template created by Pagen AI", "stats": { "stars": 272, "forks": 50 } },
+        { "name": "mcp-server-chatsum", "description": "Query and Summarize chat messages.", "stats": { "stars": 330, "forks": 28 } },
+        { "name": "mcp-directory", "description": "MCP Servers directory", "stats": { "stars": 73, "forks": 24 } },
+        { "name": "sql2struct", "description": "A developer-friendly tool for transfering sql statement to go struct.", "stats": { "stars": 534, "forks": 117 } },
+        { "name": "goz", "description": "A fantastic HTTP request libarary used in Golang.", "stats": { "stars": 256, "forks": 59 } },
+        { "name": "openai-go", "description": "OpenAI Go SDK", "stats": { "stars": 61, "forks": 19 } }
+      ]
+    }
+  }
+}

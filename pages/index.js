@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+import { setCookie, getCookie } from '../utils/cookies';
 
 export default function Home() {
   // 游戏状态
@@ -14,6 +16,8 @@ export default function Home() {
   const [isPaused, setIsPaused] = useState(false); // 暂停状态
   const [showSettings, setShowSettings] = useState(false); // 设置面板显示状态
   const [touchStart, setTouchStart] = useState({ x: 0, y: 0 }); // 触摸开始位置
+  const [gameTime, setGameTime] = useState(0); // 游戏时间（秒）
+  const [gameStartTime, setGameStartTime] = useState(null); // 游戏开始时间
   
   const gameAreaRef = useRef(null);
   const gameLoopRef = useRef(null);
@@ -56,6 +60,21 @@ export default function Home() {
   useEffect(() => {
     resetGame();
   }, [gameSize]);
+  
+  // 游戏时间计时器
+  useEffect(() => {
+    let timer;
+    if (!gameOver && !isPaused && gameStartTime) {
+      timer = setInterval(() => {
+        const elapsedSeconds = Math.floor((Date.now() - gameStartTime) / 1000);
+        setGameTime(elapsedSeconds);
+      }, 1000);
+    }
+    
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [gameOver, isPaused, gameStartTime]);
 
   // 重置游戏
   const resetGame = () => {
@@ -65,6 +84,8 @@ export default function Home() {
     setGameOver(false);
     setScore(0);
     setIsPaused(false);
+    setGameTime(0);
+    setGameStartTime(Date.now());
     
     if (gameLoopRef.current) {
       clearInterval(gameLoopRef.current);
@@ -123,7 +144,8 @@ export default function Home() {
       
       // 检查是否吃到食物
       if (head.x === food.x && head.y === food.y) {
-        setScore(prev => prev + 1);
+        const newScore = score + 1;
+        setScore(newScore);
         setFood(generateFood());
       } else {
         // 如果没吃到食物，移除尾部
@@ -150,6 +172,31 @@ export default function Home() {
       }
     };
   }, [speed, gameOver]);
+  
+  // 游戏结束时保存记录
+  useEffect(() => {
+    if (gameOver && score > 0) {
+      const timestamp = new Date().toISOString();
+      const gameRecord = {
+        score,
+        time: gameTime,
+        date: timestamp
+      };
+      
+      // 从Cookie中获取现有记录
+      const existingRecords = getCookie('snakeGameRecords') || '[]';
+      const records = JSON.parse(existingRecords);
+      
+      // 添加新记录
+      records.push(gameRecord);
+      
+      // 只保留最近的10条记录
+      const limitedRecords = records.slice(-10);
+      
+      // 保存回Cookie
+      setCookie('snakeGameRecords', JSON.stringify(limitedRecords), 30); // 保存30天
+    }
+  }, [gameOver, score, gameTime]);
 
   // 键盘控制
   useEffect(() => {
@@ -316,14 +363,29 @@ export default function Home() {
         <h1 className={styles.title}>贪吃蛇游戏</h1>
         
         <div className={styles.gameInfo}>
-          <div className={styles.score}>分数: {score}</div>
-          <button 
-            className={styles.settingsButton} 
-            onClick={() => setShowSettings(!showSettings)}
-            aria-label="设置"
-          >
-            ⚙️
-          </button>
+          <div className={styles.gameStats}>
+            <div className={styles.gameTime}>
+              时间: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}
+            </div>
+            <div className={styles.score}>分数: {score}</div>
+          </div>
+          <div>
+            <Link href="/leaderboard">
+              <button 
+                className={styles.leaderboardButton} 
+                aria-label="排行榜"
+              >
+                🏆
+              </button>
+            </Link>
+            <button 
+              className={styles.settingsButton} 
+              onClick={() => setShowSettings(!showSettings)}
+              aria-label="设置"
+            >
+              ⚙️
+            </button>
+          </div>
         </div>
 
         {showSettings && (
@@ -370,7 +432,11 @@ export default function Home() {
               <div className={styles.gameOverMessage}>
                 游戏结束!
                 <div>最终分数: {score}</div>
+                <div>游戏时间: {Math.floor(gameTime / 60)}:{(gameTime % 60).toString().padStart(2, '0')}</div>
                 <button onClick={resetGame}>重新开始</button>
+                <Link href="/leaderboard">
+                  <button style={{ marginLeft: '10px', backgroundColor: 'var(--accent-secondary)' }}>查看排行榜</button>
+                </Link>
               </div>
             </div>
           )}
