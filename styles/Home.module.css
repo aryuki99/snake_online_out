@@ -1,0 +1,280 @@
+.container {
+  min-height: 100vh;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.main {
+  padding: 2rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.title {
+  margin: 0 0 1rem;
+  line-height: 1.15;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #333;
+}
+
+.gameInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.settingsButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.settingsButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.settingsPanel {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.settingItem {
+  margin-bottom: 1rem;
+}
+
+.settingItem:last-child {
+  margin-bottom: 0;
+}
+
+.settingItem label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.settingItem input {
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.gameArea {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.5rem;
+  touch-action: none; /* 防止移动设备上的滚动 */
+}
+
+.cell {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: transparent;
+  transition: background-color 0.1s;
+}
+
+.snake {
+  background-color: #4caf50;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.snakeHead {
+  background-color: #2e7d32;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.food {
+  background-color: #f44336;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gameOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.gameOverMessage,
+.pauseMessage {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gameOverMessage div {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.gameOverMessage button,
+.pauseMessage button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+.gameOverMessage button:hover,
+.pauseMessage button:hover {
+  background-color: #388e3c;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 1rem;
+}
+
+.controlRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.controlButton {
+  width: 60px;
+  height: 60px;
+  margin: 0 0.25rem;
+  font-size: 1.5rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.controlButton:hover {
+  background-color: #1976d2;
+}
+
+.controlButton:active {
+  background-color: #0d47a1;
+}
+
+.footer {
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.footer p {
+  color: #666;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .gameInfo {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .settingsPanel {
+    max-width: 100%;
+    padding: 0.75rem;
+    margin: 0 1rem 1rem;
+  }
+  
+  .gameArea {
+    width: calc(100vw - 40px);
+    height: calc(100vw - 40px);
+    max-width: 500px;
+    max-height: 500px;
+    margin-bottom: 1rem;
+  }
+  
+  .controlButton {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .controls {
+    margin-top: 0.5rem;
+  }
+  
+  .footer {
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .controlButton {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}

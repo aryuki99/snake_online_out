@@ -1,0 +1,26 @@
+{
+  "name": "snake-game",
+  "version": "1.0.0",
+  "description": "响应式贪吃蛇游戏",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "keywords": [
+    "snake",
+    "game",
+    "nextjs"
+  ],
+  "author": "ChinoArror",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
